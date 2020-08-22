@@ -20,5 +20,13 @@ class Income(models.Model):
     amount = models.BigIntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, default="")
 
-    def __unicode__(self):
+    def __str__(self):
         return "{}-{}".format(self.amount, self.date)
+
+
+class Token(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    token = models.CharField(max_length=50)
+
+    def __str__(self):
+        return "{} token".format(self.user)
